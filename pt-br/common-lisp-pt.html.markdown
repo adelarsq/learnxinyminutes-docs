@@ -3,6 +3,7 @@ language: "Common Lisp"
 filename: commonlisp-pt.lisp
 contributors:
   - ["Paul Nathan", "https://github.com/pnathan"]
+  - ["Adelar da Silva Queiróz", "https://github.com/adelarsq"]
 translators:
   - ["Édipo Luis Féderle", "https://github.com/edipofederle"]
 lang: pt-br
@@ -60,7 +61,7 @@ t ; outro atom, denotado true.
 ;; Existe uma variedade de implementações; a maioria segue o padrão.
 ;; CLISP é um bom ponto de partida.
 
-;; Bibliotecas são gerenciadas através do Quicklisp.org's Quicklisp sistema.
+;; Bibliotecas são gerenciadas através do gerenciador de bibliotecas Quicklisp (Quicklisp.org).
 
 ;; Common Lisp é normalmente desenvolvido com um editor de texto e um REPL
 ;; (Read Evaluate Print Loop) rodando ao mesmo tempo. O REPL permite exploração
@@ -73,7 +74,7 @@ t ; outro atom, denotado true.
 
 ;;; Símbolos
 
-'foo ; => FOO Perceba que um símbolo é automáticamente convertido para maiúscula.
+'foo ; => FOO Perceba que um símbolo é automaticamente convertido para maiúscula.
 
 ;; Intern manualmente cria um símbolo a partir de uma string.
 
@@ -99,7 +100,7 @@ t ; outro atom, denotado true.
 '(+ 1 2) ; => (+ 1 2)
 ;; Você também pode chamar uma função manualmente:
 (funcall #'+ 1 2 3) ; => 6
-;; O mesmo para operações aritiméticas
+;; O mesmo para operações aritméticas
 (+ 1 1)              ; => 2
 (- 8 1)              ; => 7
 (* 10 2)             ; => 20
@@ -134,7 +135,7 @@ nil                  ; para false - e para lista vazia
 ;; format pode ser usado para formatar strings
 (format nil "~a can be ~a" "strings" "formatted")
 
-;; Impimir é bastante fácil; ~% indica nova linha
+;; Imprimir é bastante fácil; ~% indica nova linha
 (format t "Common Lisp is groovy. Dude.~%")
 
 
@@ -181,7 +182,7 @@ nil                  ; para false - e para lista vazia
 ;; Dog-p, make-dog, e dog-name foram todas criadas por defstruct!
 
 ;;; Pares
-;; `cons' constroi pares, `car' and `cdr' extrai o primeiro
+;; `cons' constrói pares, `car' and `cdr' extrai o primeiro
 ;; e o segundo elemento
 (cons 'SUBJECT 'VERB) ; => '(SUBJECT . VERB)
 (car (cons 'SUBJECT 'VERB)) ; => SUBJECT
@@ -242,7 +243,7 @@ nil                  ; para false - e para lista vazia
 ; => #3A(((0 0) (0 0)) ((0 0) (0 0)))
 
 ;; Cuidado - os valores de inicialição padrões são
-;; definidos pela implementção. Aqui vai como defini-lós.
+;; definidos pela implementção. Aqui vai como defini-los.
 
 (make-array '(2) :initial-element 'unset)
 
@@ -255,8 +256,8 @@ nil                  ; para false - e para lista vazia
 
 ;;; Vetores Ajustáveis
 
-;; Vetores ajustáveis tem a mesma representação impressa que os vectores
-;;  de tamanho fixo
+;; Vetores ajustáveis tem a mesma representação impressa que os vetores
+;; de tamanho fixo
 (defparameter *adjvec* (make-array '(3) :initial-contents '(1 2 3)
       :adjustable t :fill-pointer t))
       
@@ -276,7 +277,7 @@ nil                  ; para false - e para lista vazia
 (union '(1 2 3 4) '(4 5 6 7))        ; => (3 2 1 4 5 6 7)
 (adjoin 4 '(1 2 3 4))     ; => (1 2 3 4)
 
-;; Mas você irá querer usar uma estrutura de dados melhor que uma lista encadeada.
+;; Mas você irá querer usar uma estrutura de dados melhor que uma lista encadeada
 ;; para performance.
 
 ;;; Dicionários são implementados como hash tables
@@ -290,7 +291,7 @@ nil                  ; para false - e para lista vazia
 ;; Recupera um valor
 (gethash 'a *m*) ; => 1, t
 
-;; Detalhe - Common Lisp  tem multiplos valores de retorno possíveis. gethash
+;; Detalhe - Common Lisp tem múltiplos valores de retorno possíveis. gethash
 ;; retorna t no segundo valor se alguma coisa foi encontrada, e nil se não.
 
 ;; Recuperando um valor não presente retorna nil
@@ -299,7 +300,7 @@ nil                  ; para false - e para lista vazia
 ;; Você pode fornecer um valor padrão para uma valores não encontrados
 (gethash 'd *m* :not-found) ; => :NOT-FOUND
 
-;; Vamos tratas múltiplos valores de rotorno aqui.
+;; Vamos tratar múltiplos valores de retorno aqui.
 
 (multiple-value-bind
       (a b)
@@ -319,7 +320,7 @@ nil                  ; para false - e para lista vazia
 
 ;; Use `lambda' para criar funções anônimas
 ;; Uma função sempre retorna um valor da última expressão avaliada.
-;; A representação exata impressão de uma função varia de acordo ...
+;; A representação exata da impressão de uma função varia de acordo ...
 
 (lambda () "Hello World") ; => #<FUNCTION (LAMBDA ()) {1004E7818B}>
 
@@ -381,12 +382,12 @@ nil                  ; para false - e para lista vazia
 (= 3 3.0) ; => t
 (= 2 1) ; => nil
 
-;; para identidade de objeto (aproximadamente) use `eql`
+;; para identidade de objeto (aproximada) use `eql`
 (eql 3 3) ; => t
 (eql 3 3.0) ; => nil
 (eql (list 3) (list 3)) ; => nil
 
-;; para listas, strings, e para pedaços de vetores use `equal'
+;; para listas, strings e para vetores use `equal'
 (equal (list 'a 'b) (list 'a 'b)) ; => t
 (equal (list 'a 'b) (list 'b 'a)) ; => nil
 
@@ -466,7 +467,7 @@ nil                  ; para false - e para lista vazia
 ;; 7. Classes e Objetos
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Sem clases Animal, vamos usar os veículos de transporte de tração
+;; Sem classes Animal, vamos usar os veículos de transporte de tração
 ;; humana mecânicos.
 
 (defclass human-powered-conveyance ()
@@ -534,7 +535,7 @@ nil                  ; para false - e para lista vazia
 ;; Note o comportamento reflexivo disponível para você! Common Lisp é
 ;; projetada para ser um sistema interativo.
 
-;; Para definir um métpdo, vamos encontrar o que nossa cirunferência da
+;; Para definir um método, vamos encontrar o que nossa circunferência da
 ;; roda da bicicleta usando a equação: C = d * pi
 
 (defmethod circumference ((object bicycle))
@@ -563,10 +564,10 @@ nil                  ; para false - e para lista vazia
 ;; 8. Macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Macros permitem que você estenda a sintaxe da lingaugem
+;; Macros permitem que você estenda a sintaxe da linguagem.
 
 ;; Common Lisp não vem com um loop WHILE - vamos adicionar um.
-;; Se obedecermos nossos instintos 'assembler', acabamos com:
+;; Se obedecermos nossos instintos acabamos com:
 
 (defmacro while (condition &body body)
     "Enquanto `condition` é verdadeiro, `body` é executado.
@@ -595,7 +596,7 @@ nil                  ; para false - e para lista vazia
 ;; Entretanto, com um compilador moderno, isso não é preciso; o LOOP
 ;; 'form' compila igual e é bem mais fácil de ler.
 
-;; Noteq ue ``` é usado , bem como `,` e `@`. ``` é um operador 'quote-type'
+;; Note que ``` é usado , bem como `,` e `@`. ``` é um operador 'quote-type'
 ;; conhecido como 'quasiquote'; isso permite o uso de `,` . `,` permite "unquoting"
 ;; e variáveis. @ interpolará listas.
 
